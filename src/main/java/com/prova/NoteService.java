@@ -29,15 +29,14 @@ public class NoteService {
 	@POST
 	@Path("/addnote")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String addNote(@FormParam("title") String title,@FormParam("author") String author, @FormParam("review") String review,
-			@Context HttpServletResponse servletResponse) throws IOException {
+	public String addNote(@FormParam("title") String title,@FormParam("author") String author, @FormParam("review") String review) throws IOException {
 		return noteDao.addNote(title, author, review);
 	}
 	
 	@DELETE
 	@Path("/deletenote")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteNote(@FormParam("id") Long id, @Context HttpServletResponse servletResponse) throws IOException{
+	public String deleteNote(@FormParam("id") Long id) throws IOException{
 		noteDao.deleteNote(id);
 		return "elemento eliminato";
 	}
