@@ -47,7 +47,7 @@ public class NoteDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/servizirest", "root", "CeLaFaremo2020!");
 			Statement stmt=con.createStatement();
-			int result = stmt.executeUpdate("INSERT INTO note(title, author, review) VALUES (?, ?, ?)");
+			int result = stmt.executeUpdate("insert into note(title, author, review) values("+title+","+author+","+review+"')");
 
 			if (result == 1) {
 				return "success";
