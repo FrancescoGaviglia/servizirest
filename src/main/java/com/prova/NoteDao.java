@@ -33,13 +33,34 @@ public class NoteDao {
 			rs.close();
 			stmt.close();
 			con.close();
-			
+
 			return noteList;
 		}catch (Exception e) {
 			System.out.println(e);
 		}
 		return noteList;
 	}
+
+	public String addNote(String title, String author, String review) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/servizirest", "root", "CeLaFaremo2020!");
+			Statement stmt=con.createStatement();
+			int result = stmt.executeUpdate("insert into note values("+title+","+author+","+review+"')");
+			
+			if (result == 1) {
+				return "success";
+			}
+			stmt.close();
+			con.close();
+
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		return "fail";
+	}
+
 }
 
 
