@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -31,6 +32,14 @@ public class NoteService {
 	public String addNote(@FormParam("title") String title,@FormParam("author") String author, @FormParam("review") String review,
 			@Context HttpServletResponse servletResponse) throws IOException {
 		return noteDao.addNote(title, author, review);
+	}
+	
+	@DELETE
+	@Path("/deletenote")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String deleteNote(@FormParam("id") Long id, @Context HttpServletResponse servletResponse) throws IOException{
+		noteDao.deleteNote(id);
+		return "elemento eliminato";
 	}
 
 }
