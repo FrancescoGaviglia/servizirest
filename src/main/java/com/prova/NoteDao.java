@@ -66,7 +66,7 @@ public class NoteDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/servizirest", "root", "CeLaFaremo2020!");
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("delete from note where id =("+id+"')");
+			stmt.executeUpdate("delete from note where id =("+id+")");
 
 			stmt.close();
 			con.close();
@@ -75,7 +75,29 @@ public class NoteDao {
 			System.out.println(e);
 		}
 	}
+
+	public String updateNote(Long id, String title, String author, String review) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/servizirest", "root", "CeLaFaremo2020!");
+			Statement stmt=con.createStatement();
+			int result = stmt.executeUpdate("update note set title='"+title+"', author ='"+author+"', review='"+review+"' where id= "+id+"");
+
+			if (result == 1) {
+				return "success";
+			}
+			stmt.close();
+			con.close();
+
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		return "fail";
+	}
+
 }
+
 
 
 
